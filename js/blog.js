@@ -207,3 +207,89 @@ document.addEventListener('click', () => {
     follower.style.transform = 'scale(1) translate(-50%, -50%)';
   }, 200);
 });
+
+// Scroll Fade-up Animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+document.querySelectorAll('.fade-slide-up').forEach(post => {
+  observer.observe(post);
+});
+
+// Draggable Stickers
+const stickers = document.querySelectorAll('.floating-sticker');
+
+stickers.forEach(sticker => {
+  sticker.addEventListener('mousedown', (e) => {
+    sticker.classList.add('dragging');
+    
+    let shiftX = e.clientX - sticker.getBoundingClientRect().left;
+    let shiftY = e.clientY - sticker.getBoundingClientRect().top;
+
+    function moveAt(pageX, pageY) {
+      sticker.style.left = pageX - shiftX + 'px';
+      sticker.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(e) {
+      moveAt(e.pageX, e.pageY);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+
+    sticker.addEventListener('mouseup', () => {
+      sticker.classList.remove('dragging');
+      document.removeEventListener('mousemove', onMouseMove);
+    }, { once: true });
+  });
+
+  sticker.ondragstart = () => false;
+});
+
+// Scroll Fade-up Animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+document.querySelectorAll('.fade-slide-up').forEach(post => {
+  observer.observe(post);
+});
+
+// Draggable Stickers
+const stickers = document.querySelectorAll('.floating-sticker');
+
+stickers.forEach(sticker => {
+  sticker.addEventListener('mousedown', (e) => {
+    sticker.classList.add('dragging');
+    
+    let shiftX = e.clientX - sticker.getBoundingClientRect().left;
+    let shiftY = e.clientY - sticker.getBoundingClientRect().top;
+
+    function moveAt(pageX, pageY) {
+      sticker.style.left = pageX - shiftX + 'px';
+      sticker.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(e) {
+      moveAt(e.pageX, e.pageY);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+
+    sticker.addEventListener('mouseup', () => {
+      sticker.classList.remove('dragging');
+      document.removeEventListener('mousemove', onMouseMove);
+    }, { once: true });
+  });
+
+  sticker.ondragstart = () => false;
+});

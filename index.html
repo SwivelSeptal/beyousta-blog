@@ -31,8 +31,39 @@
   </nav>
 
   <main id="app" data-cursor-color="black">
-    <h1>Welcome to the beyousta blog</h1>
-    <p>Fresh inspiration, tips, and brand stories about authentic self-expression.</p>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <h1 class="hero-title">beyousta blog</h1>
+      <p class="hero-tagline typing">your vibe. your voice. your sticker.</p>
+      <img src="./assets/sticker1.png" alt="Sticker" class="floating-sticker sticker1">
+      <img src="./assets/sticker2.png" alt="Sticker" class="floating-sticker sticker2">
+    </header>
+
+    <!-- Animated Divider -->
+    <section class="wave-divider">
+      <svg viewBox="0 0 1440 320">
+        <path fill="#ffffff" d="M0,192L48,186.7C96,181,192,171,288,176C384,181,480,203,576,197.3C672,192,768,160,864,138.7C960,117,1056,107,1152,112C1248,117,1344,139,1392,149.3L1440,160V320H0Z"></path>
+      </svg>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-posts">
+      <article class="post fade-slide-up">
+        <h2>How to express yourself in the AI era</h2>
+        <p>Find out why your personal vibe matters more than ever.</p>
+      </article>
+      
+      <article class="post fade-slide-up">
+        <h2>Top 10 sticker ideas for your laptop</h2>
+        <p>Customizing your tech has never been cooler!</p>
+      </article>
+
+      <article class="post fade-slide-up">
+        <h2>Behind the Scenes of Beyousta</h2>
+        <p>Get a glimpse into our bold creative journey.</p>
+      </article>
+    </section>
 
     <!-- Search Bar -->
     <input type="text" id="searchInput" placeholder="Search blog posts...">
@@ -40,8 +71,6 @@
     <!-- Blog Grid -->
     <section id="blog-grid" data-cursor-color="black">
       <!-- Blog post cards will load dynamically here -->
-      <!-- Blog posts will be injected dynamically by blog.js -->
-      <!-- Each blog card will have class="blog-card magnetic" automatically -->
     </section>
 
     <!-- Loading Indicator -->
@@ -53,6 +82,7 @@
     <button id="backToTop" class="magnetic" data-cursor-color="black" title="Back to Top">
       <i class="fas fa-chevron-up"></i>
     </button>
+
   </main>
 
   <!-- Custom Cursor Elements -->
@@ -61,6 +91,9 @@
 
   <!-- Main Blog JavaScript -->
   <script src="./js/blog.js"></script>
+
+  <!-- Floating / Scroll Animation JavaScript -->
+  <script src="./js/scripts.js"></script>
 
   <!-- PWA Service Worker Registration -->
   <script>
