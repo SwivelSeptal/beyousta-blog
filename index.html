@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beyousta blog | express yourself</title>
+
+  <!-- Adobe Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/hnc1dpr.css">
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/1054cf821b.js" crossorigin="anonymous"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <nav id="navbar">
+    <a href="https://beyousta.com" data-link>home</a>
+    <a href="https://beyousta.com/shop" data-link>shop</a>
+    <a href="https://blog.beyousta.com" data-link>blog</a>
+    <a href="https://beyousta.com/about" data-link>about</a>
+    <a href="https://beyousta.com/contact" data-link>contact</a>
+  </nav>
+
+  <main id="app">
+    <h1>Welcome to the beyousta blog</h1>
+    <p>Fresh inspiration, tips, and brand stories about authentic self-expression.</p>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search blog posts...">
+
+    <!-- Blog Grid -->
+    <section id="blog-grid">
+      <!-- Blog post cards will load dynamically here -->
+    </section>
+
+    <!-- Loading Indicator -->
+    <div id="loading" style="text-align: center; padding: 20px; display: none;">
+      Loading more posts...
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+  </main>
+
+  <script src="./js/blog.js"></script>
+</body>
+</html>
