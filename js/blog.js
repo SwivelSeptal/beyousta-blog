@@ -109,3 +109,49 @@ backToTopButton.addEventListener("click", () => {
 
 // Initial load of posts
 loadPosts();
+
+/* ----------------------- */
+/* Custom Mouse Cursor Code */
+/* ----------------------- */
+
+// Custom cursor setup
+const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', e => {
+  cursor.style.top = e.clientY + 'px';
+  cursor.style.left = e.clientX + 'px';
+
+  follower.style.top = e.clientY + 'px';
+  follower.style.left = e.clientX + 'px';
+});
+
+// Smooth follower animation
+let mouseX = 0, mouseY = 0;
+let posX = 0, posY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function smoothFollow() {
+  posX += (mouseX - posX) / 9;
+  posY += (mouseY - posY) / 9;
+  follower.style.transform = `translate(${posX}px, ${posY}px) translate(-50%, -50%)`;
+  requestAnimationFrame(smoothFollow);
+}
+
+smoothFollow();
+
+// Cursor interaction with links and buttons
+const hoverTargets = document.querySelectorAll('a, button');
+
+hoverTargets.forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    follower.style.transform = 'scale(1.5)';
+  });
+  el.addEventListener('mouseleave', () => {
+    follower.style.transform = 'scale(1)';
+  });
+});
