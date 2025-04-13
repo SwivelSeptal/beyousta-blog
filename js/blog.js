@@ -197,13 +197,3 @@ magneticElements.forEach(el => {
     el.style.transform = `translate(0px, 0px)`;
   });
 });
-
-// Click pulse effect
-document.addEventListener('click', () => {
-  follower.style.transition = 'transform 0.2s ease, background-color 0.2s ease, width 0.2s ease, height 0.2s ease';
-  follower.style.transform = 'scale(1.8) translate(-50%, -50%)';
-  
-  setTimeout(() => {
-    follower.style.transform = 'scale(1) translate(-50%, -50%)';
-  }, 200);
-});

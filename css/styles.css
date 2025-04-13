@@ -1,4 +1,3 @@
-/* Hyerlinks */
 .hover-link {
   position: relative;
   display: inline-block;
@@ -6,6 +5,8 @@
   text-decoration: none;
   overflow: hidden; /* Important for the line effect */
 }
+
+/* Hyerlinks */
 
 .hover-link::after {
   content: '';
