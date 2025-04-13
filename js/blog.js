@@ -136,8 +136,8 @@ document.addEventListener('mousemove', e => {
 });
 
 function smoothFollow() {
-  posX += (mouseX - posX) / 9;
-  posY += (mouseY - posY) / 9;
+  posX += (mouseX - posX) * 0.15;  // More natural following speed
+  posY += (mouseY - posY) * 0.15;
   follower.style.transform = `translate(${posX}px, ${posY}px) translate(-50%, -50%)`;
   requestAnimationFrame(smoothFollow);
 }
