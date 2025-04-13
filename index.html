@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="./manifest.json">
-    <!-- PWA Theme Color -->
-    <meta name="theme-color" content="#000000">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="./manifest.json">
+  <!-- PWA Theme Color -->
+  <meta name="theme-color" content="#000000">
 
   <title>beyousta blog | express yourself</title>
-
 
   <!-- Adobe Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/hnc1dpr.css">
@@ -40,6 +40,8 @@
     <!-- Blog Grid -->
     <section id="blog-grid" data-cursor-color="black">
       <!-- Blog post cards will load dynamically here -->
+      <!-- Blog posts will be injected dynamically by blog.js -->
+      <!-- Each blog card will have class="blog-card magnetic" automatically -->
     </section>
 
     <!-- Loading Indicator -->
@@ -48,23 +50,30 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" data-cursor-color="black" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+    <button id="backToTop" class="magnetic" data-cursor-color="black" title="Back to Top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
   </main>
+
+  <!-- Custom Cursor Elements -->
   <div class="cursor"></div>
   <div class="cursor-follower"></div>
+
+  <!-- Main Blog JavaScript -->
   <script src="./js/blog.js"></script>
+
+  <!-- PWA Service Worker Registration -->
   <script>
-    // Register Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('./service-worker.js')
-      .then(function(registration) {
-        console.log('✅ Service Worker registered with scope:', registration.scope);
-      }, function(err) {
-        console.log('❌ Service Worker registration failed:', err);
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(function(registration) {
+            console.log('✅ Service Worker registered with scope:', registration.scope);
+          }, function(err) {
+            console.log('❌ Service Worker registration failed:', err);
+          });
       });
-  });
-}
+    }
   </script>
 
 </body>

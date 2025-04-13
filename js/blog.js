@@ -49,7 +49,7 @@ function createPostCard(post) {
   const postURL = `./posts/${post.year}/${post.slug}.html`; // Auto-generate post link
 
   const postCard = document.createElement('div');
-  postCard.className = 'blog-card';
+  postCard.className = 'blog-card magnetic'; // <-- ADD magnetic class here
   postCard.innerHTML = `
     <a href="${postURL}" class="blog-link">
       <div class="blog-card-image">
@@ -178,6 +178,23 @@ sections.forEach(section => {
       follower.style.borderColor = '#000000';
       follower.style.backgroundColor = 'transparent';
     }
+  });
+});
+
+// Magnetic Hover Effect
+const magneticElements = document.querySelectorAll('.magnetic');
+
+magneticElements.forEach(el => {
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+  });
+
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = `translate(0px, 0px)`;
   });
 });
 
