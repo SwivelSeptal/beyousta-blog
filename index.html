@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <!-- PWA Theme Color -->
+    <meta name="theme-color" content="#000000">
+
   <title>beyousta blog | express yourself</title>
+
 
   <!-- Adobe Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/hnc1dpr.css">
@@ -24,7 +30,7 @@
     <a href="https://beyousta.com/contact" data-link>contact</a>
   </nav>
 
-  <main id="app">
+  <main id="app" data-cursor-color="black">
     <h1>Welcome to the beyousta blog</h1>
     <p>Fresh inspiration, tips, and brand stories about authentic self-expression.</p>
 
@@ -32,20 +38,34 @@
     <input type="text" id="searchInput" placeholder="Search blog posts...">
 
     <!-- Blog Grid -->
-    <section id="blog-grid">
+    <section id="blog-grid" data-cursor-color="black">
       <!-- Blog post cards will load dynamically here -->
     </section>
 
     <!-- Loading Indicator -->
-    <div id="loading" style="text-align: center; padding: 20px; display: none;">
+    <div id="loading" data-cursor-color="black" style="text-align: center; padding: 20px; display: none;">
       Loading more posts...
     </div>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+    <button id="backToTop" data-cursor-color="black" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
   </main>
   <div class="cursor"></div>
   <div class="cursor-follower"></div>
   <script src="./js/blog.js"></script>
+  <script>
+    // Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(function(registration) {
+        console.log('✅ Service Worker registered with scope:', registration.scope);
+      }, function(err) {
+        console.log('❌ Service Worker registration failed:', err);
+      });
+  });
+}
+  </script>
+
 </body>
 </html>
