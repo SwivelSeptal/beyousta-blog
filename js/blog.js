@@ -207,16 +207,3 @@ document.addEventListener('click', () => {
     follower.style.transform = 'scale(1) translate(-50%, -50%)';
   }, 200);
 });
-
-// Scroll Fade-up Animation
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-});
-
-document.querySelectorAll('.fade-slide-up').forEach(post => {
-  observer.observe(post);
-});
