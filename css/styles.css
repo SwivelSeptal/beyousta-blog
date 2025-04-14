@@ -1,19 +1,30 @@
+/* Color Variables */
+:root {
+  --lavender: #E6E6FA;
+  --hot-pink: #FF69B4;
+  --text-color: #333;
+  --background-color: #FFFFFF;
+}
+
 /* Apply All Round Gothic Medium */
 body {
   font-family: "all-round-gothic", "Segoe UI", sans-serif;
   font-weight: 500; /* medium weight */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  cursor: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "all-round-gothic", "Segoe UI", sans-serif;
-  font-weight: 600; /* a bit bolder */
+  font-weight: 600;
 }
 
 /* Hover Link (Underline Animation) */
 .hover-link {
   position: relative;
   display: inline-block;
-  color: #000;
+  color: var(--hot-pink);
   text-decoration: none;
   overflow: hidden;
 }
@@ -25,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: #000;
+  background-color: var(--hot-pink);
   transition: width 0.4s ease, left 0.4s ease;
   transform: translateX(-50%);
 }
@@ -39,8 +50,8 @@ h1, h2, h3, h4, h5, h6 {
 #navbar {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(230, 230, 250, 0.2); /* Light Lavender Glass */
+  border-bottom: 1px solid rgba(255, 105, 180, 0.4); /* Hot Pink Tint */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 999;
@@ -50,37 +61,35 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem 2rem;
 }
 
-/* Blog Grid - Vision Pro Layout */
+/* Blog Grid */
 #blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 4rem 2rem;
-  /*background: linear-gradient(145deg, #f5f7fa, #e4ebf5); Light visionOS background */
-  background: linear-gradient(145deg, #2c3e50, #34495e);
+  background: linear-gradient(145deg, var(--lavender), var(--hot-pink));
   min-height: 100vh;
 }
 
-/* Blog Card - Vision Pro Floating Glass Pane */
+/* Blog Card */
 .blog-card {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(230, 230, 250, 0.4); /* Lavender border */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2); /* Hot pink glow */
   transition: all 0.4s ease;
   transform: perspective(1000px) translateZ(0);
   will-change: transform, box-shadow;
   position: relative;
 }
 
-/* Hover effect with 3D tilt and lift */
 .blog-card:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   transform: perspective(1000px) rotateX(3deg) rotateY(3deg) translateY(-10px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3);
 }
 
 /* Blog Card Link */
@@ -92,13 +101,13 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Ripple Effect inside Blog Cards */
+/* Ripple Effect */
 .ripple {
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
   animation: ripple-effect 0.6s linear;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 105, 180, 0.25);
   pointer-events: none;
 }
 
@@ -114,11 +123,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 105, 180, 0.3);
   transition: transform 0.5s ease;
 }
 
-/* Subtle image zoom on hover */
 .blog-card:hover .blog-card-image img {
   transform: scale(1.05);
 }
@@ -132,6 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.4rem;
   margin: 0 0 0.5rem;
   font-weight: 600;
+  color: var(--hot-pink);
 }
 
 .post-date {
@@ -147,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--lavender);
   border-radius: 6px;
 }
 
@@ -157,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 30px;
   right: 30px;
   display: none;
-  background-color: #333;
+  background-color: var(--hot-pink);
   color: #fff;
   border: none;
   padding: 10px 12px;
@@ -165,11 +174,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 18px;
   cursor: pointer;
   z-index: 1000;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, background-color 0.3s;
 }
 
 #backToTop:hover {
-  background-color: #555;
+  background-color: var(--lavender);
+  color: var(--hot-pink);
 }
 
 /* Blog Post Page */
@@ -180,15 +190,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blog-post {
-  background: #fff;
+  background: var(--background-color);
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
 }
 
 .post-title {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  color: var(--hot-pink);
 }
 
 .post-date {
@@ -206,12 +217,13 @@ h1, h2, h3, h4, h5, h6 {
 .post-content h2 {
   margin-top: 2rem;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--hot-pink);
 }
 
+/* Back Link */
 .back-link {
   text-decoration: none;
-  color: #333;
+  color: var(--hot-pink);
   font-weight: bold;
   font-size: 1rem;
 }
@@ -220,33 +232,28 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 0.5rem;
 }
 
-/* Hide default cursor */
-body {
-  cursor: none;
-}
-
-/* Main Cursor (small dot) */
+/* Main Cursor */
 .cursor {
   position: fixed;
   top: 0;
   left: 0;
   width: 8px;
   height: 8px;
-  background-color: #000;
+  background-color: var(--hot-pink);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
 }
 
-/* Cursor Follower (bigger smooth circle) */
+/* Cursor Follower */
 .cursor-follower {
   position: fixed;
   top: 0;
   left: 0;
   width: 32px;
   height: 32px;
-  border: 2px solid #000;
+  border: 2px solid var(--hot-pink);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -254,7 +261,7 @@ body {
   transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.15s ease-out;
 }
 
-/* Fade + Float Up Animation on Scroll (Vision Pro) */
+/* Fade + Float Up Animation */
 .fade-slide-up {
   opacity: 0;
   transform: translateY(30px);
