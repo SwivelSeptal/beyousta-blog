@@ -1,17 +1,33 @@
+/* -----------------------------------
+   Beyousta Master Stylesheet
+   Theme: Lavender + Hot Pink
+----------------------------------- */
+
+/* :root Variables */
 :root {
-  --primary-color: #4B0082;
-  --accent-color: #D4AF37;
-  --background-color: #1a1a1a;
-  --text-color: #f5f5f5;
-  --muted-text-color: #bbbbbb;
-  --shadow-color: rgba(212, 175, 55, 0.3);
-  --border-color: rgba(212, 175, 55, 0.4);
+  /* Brand Colors */
+  --primary-color: #E6E6FA; /* Lavender */
+  --accent-color: #FF69B4;  /* Hot Pink */
+
+  /* Background & Text */
+  --background-color: #FFFFFF; /* Main background */
+  --text-color: #333333;        /* Main text color */
+  --muted-text-color: #888888;  /* Muted secondary text */
+
+  /* Shadows & Borders */
+  --shadow-color: rgba(255, 105, 180, 0.2); /* Hot Pink soft shadow */
+  --border-color: rgba(230, 230, 250, 0.4); /* Soft Lavender border */
+
+  /* Cursor */
   --cursor-color: var(--accent-color);
-  --background-gradient: linear-gradient(145deg, #2a0845, #1b0033);
+
+  /* Gradients */
+  --background-gradient: linear-gradient(145deg, var(--primary-color), var(--accent-color));
 }
 
-/*Global Elements*/
-/* Body */
+/* -----------------------------------
+   Base Styles
+----------------------------------- */
 body {
   font-family: "all-round-gothic", "Segoe UI", sans-serif;
   font-weight: 500;
@@ -20,13 +36,14 @@ body {
   cursor: none;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: "all-round-gothic", "Segoe UI", sans-serif;
   font-weight: 600;
 }
 
-/* Hover Link */
+/* -----------------------------------
+   Links
+----------------------------------- */
 .hover-link {
   position: relative;
   display: inline-block;
@@ -51,12 +68,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   left: 50%;
 }
-/*Components*/
-/*navbar*/
+
+/* -----------------------------------
+   Navbar
+----------------------------------- */
 #navbar {
   position: sticky;
   top: 0;
-  background: rgba(230, 230, 250, 0.2); /* Lavender Glass */
+  background: rgba(230, 230, 250, 0.2); /* Light Lavender Glass */
   border-bottom: 1px solid var(--accent-color);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -67,7 +86,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem 2rem;
 }
 
-/* blog grid */
+/* -----------------------------------
+   Blog Grid
+----------------------------------- */
 #blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -77,7 +98,9 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100vh;
 }
 
-/* blog card */
+/* -----------------------------------
+   Blog Card
+----------------------------------- */
 .blog-card {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid var(--border-color);
@@ -98,11 +121,12 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 12px 30px var(--shadow-color);
 }
 
-.blog-card-content h2 {
-  font-size: 1.4rem;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-  color: var(--accent-color);
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Ripple Effect */
@@ -122,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/*images*/
+/* Blog Card Image */
 .blog-card-image img {
   width: 100%;
   height: 200px;
@@ -135,7 +159,26 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.05);
 }
 
-/* Search input*/
+/* Blog Card Content */
+.blog-card-content {
+  padding: 1.5rem;
+}
+
+.blog-card-content h2 {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.post-date {
+  color: var(--muted-text-color);
+  font-size: 0.9rem;
+}
+
+/* -----------------------------------
+   Search Input
+----------------------------------- */
 #searchInput {
   width: 100%;
   max-width: 400px;
@@ -147,7 +190,9 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px;
 }
 
-/* Back to top button*/
+/* -----------------------------------
+   Back to Top Button
+----------------------------------- */
 #backToTop {
   position: fixed;
   bottom: 30px;
@@ -169,7 +214,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-color);
 }
 
-/*blog post page*/
+/* -----------------------------------
+   Blog Post Page
+----------------------------------- */
 #post {
   max-width: 800px;
   margin: 3rem auto;
@@ -187,13 +234,19 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-color);
 }
 
+.post-content p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
 .post-date {
   color: var(--muted-text-color);
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
 
-/*backlink*/
+/* Back Link */
 .back-link {
   text-decoration: none;
   color: var(--accent-color);
@@ -205,7 +258,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 0.5rem;
 }
 
-/*cursor*/
+/* -----------------------------------
+   Cursor
+----------------------------------- */
 .cursor {
   position: fixed;
   top: 0;
@@ -233,7 +288,9 @@ h1, h2, h3, h4, h5, h6 {
   transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.15s ease-out;
 }
 
-/*animations and background*/
+/* -----------------------------------
+   Animations
+----------------------------------- */
 .fade-slide-up {
   opacity: 0;
   transform: translateY(30px);
@@ -245,6 +302,9 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0);
 }
 
+/* -----------------------------------
+   Particles Background
+----------------------------------- */
 #particles-bg {
   position: fixed;
   top: 0;
