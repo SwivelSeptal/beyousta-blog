@@ -1,12 +1,11 @@
+/* Hover Link (Underline Animation) */
 .hover-link {
   position: relative;
   display: inline-block;
-  color: #000; /* Link color */
+  color: #000;
   text-decoration: none;
-  overflow: hidden; /* Important for the line effect */
+  overflow: hidden;
 }
-
-/* Hyerlinks */
 
 .hover-link::after {
   content: '';
@@ -15,7 +14,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: #000; /* Line color */
+  background-color: #000;
   transition: width 0.4s ease, left 0.4s ease;
   transform: translateX(-50%);
 }
@@ -25,18 +24,17 @@
   left: 50%;
 }
 
-/* Blog Grid */
-/* Blog Grid (Vision Pro Layout) */
+/* Blog Grid - Vision Pro Layout */
 #blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 4rem 2rem;
-  background: linear-gradient(145deg, #f5f7fa, #e4ebf5);
+  background: linear-gradient(145deg, #f5f7fa, #e4ebf5); /* Light visionOS gradient */
   min-height: 100vh;
 }
 
-/* Blog Card - Vision Pro Style */
+/* Blog Card - Vision Pro Floating Card */
 .blog-card {
   background: rgba(255, 255, 255, 0.85); /* Soft frosted glass feel */
   border: 1px solid rgba(200, 200, 200, 0.3);
@@ -49,7 +47,7 @@
   will-change: transform, box-shadow;
 }
 
-/* Hover Soft Lift + Slight 3D Tilt */
+/* Hover effect with 3D tilt and lift */
 .blog-card:hover {
   transform: perspective(1000px) rotateX(3deg) rotateY(3deg) translateY(-10px) scale(1.02);
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
@@ -71,7 +69,7 @@
   transition: transform 0.5s ease;
 }
 
-/* Zoom-in Image slightly on Hover */
+/* Subtle image zoom on hover */
 .blog-card:hover .blog-card-image img {
   transform: scale(1.05);
 }
@@ -90,18 +88,6 @@
 .post-date {
   color: #888;
   font-size: 0.9rem;
-}
-
-/* Fade In + Float Up Animation on Scroll */
-.fade-slide-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.fade-slide-up.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Search Box */
@@ -217,4 +203,16 @@ body {
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.15s ease-out;
+}
+
+/* Fade + Float Up Animation on Scroll (Vision Pro) */
+.fade-slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
