@@ -1,3 +1,14 @@
+/* Apply All Round Gothic Medium */
+body {
+  font-family: "all-round-gothic", "Segoe UI", sans-serif;
+  font-weight: 500; /* medium weight */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "all-round-gothic", "Segoe UI", sans-serif;
+  font-weight: 600; /* a bit bolder */
+}
+
 /* Hover Link (Underline Animation) */
 .hover-link {
   position: relative;
