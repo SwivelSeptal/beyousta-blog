@@ -39,6 +39,7 @@ function loadPosts() {
   chunk.forEach(post => {
     const postCard = createPostCard(post);
     blogGrid.appendChild(postCard);
+    observer.observe(postCard); // Observe for fade-slide-up animation
   });
 
   currentPage++;
@@ -49,7 +50,7 @@ function createPostCard(post) {
   const postURL = `./posts/${post.year}/${post.slug}.html`; // Auto-generate post link
 
   const postCard = document.createElement('div');
-  postCard.className = 'blog-card magnetic'; // <-- ADD magnetic class here
+  postCard.className = 'blog-card magnetic fade-slide-up'; // <-- Added fade-slide-up class
   postCard.innerHTML = `
     <a href="${postURL}" class="blog-link">
       <div class="blog-card-image">
@@ -85,6 +86,7 @@ searchInput.addEventListener('input', function () {
   filteredPosts.forEach(post => {
     const postCard = createPostCard(post);
     blogGrid.appendChild(postCard);
+    observer.observe(postCard); // Observe filtered posts too
   });
 });
 
@@ -196,4 +198,18 @@ magneticElements.forEach(el => {
   el.addEventListener('mouseleave', () => {
     el.style.transform = `translate(0px, 0px)`;
   });
+});
+
+/* ----------------------------- */
+/* Fade + Float Up Blog Cards on Scroll */
+/* ----------------------------- */
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible'); // Add visible class to animate
+    }
+  });
+}, {
+  threshold: 0.2 // Soft start of animation
 });
