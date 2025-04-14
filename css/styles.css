@@ -216,3 +216,15 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Particles Background */
+#particles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* behind everything */
+  background: transparent;
+  pointer-events: none;
+}
