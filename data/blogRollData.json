@@ -1,0 +1,31 @@
+[
+    {
+      "title": "Sticker Trends in 2025",
+      "slug": "2025-04-18-sticker-trends",
+      "year": "2025",
+      "date": "2025-04-18",
+      "image": "/images/blog/default-blog.png"
+    },
+    {
+      "title": "Express Yourself in the AI Age",
+      "slug": "2025-04-15-express-yourself",
+      "year": "2025",
+      "date": "2025-04-15",
+      "image": "/images/blog/default-blog.png",
+      "featured": true
+    },
+    {
+      "title": "Express Yourself in the AI Age",
+      "slug": "blog-post-template",
+      "year": "2025",
+      "date": "2025-04-15",
+      "image": "/images/blog/express-yourself-cover.png"
+    },
+    {
+      "title": "Welcome to BeYousta!",
+      "slug": "2025-04-10-welcome-to-beyousta",
+      "year": "2025",
+      "date": "2025-04-10",
+      "image": "/images/blog/default-blog.png"
+    }
+  ]

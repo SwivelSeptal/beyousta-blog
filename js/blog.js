@@ -1,234 +1,95 @@
 // js/blog.js
 
-// Blog posts data
-const posts = [
-  { 
-    title: "Welcome to BeYousta!",
-    slug: "2025-04-10-welcome-to-beyousta",
-    year: "2025",
-    date: "2025-04-10",
-    image: "./assets/images/welcome-thumb.jpg"
-  },
-  { 
-    title: "Express Yourself in the AI Age",
-    slug: "2025-04-15-express-yourself",
-    year: "2025",
-    date: "2025-04-15",
-    image: "./assets/images/express-yourself-thumb.jpg"
-  }
-  // Add more posts here...
-];
+// Constants
+const postsPerPage = 12;
+let currentPage = 0;
+let posts = [];
+let filteredPosts = [];
 
-// Sort posts by newest first
-posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+const blogGrid = document.getElementById('blog-grid');
+const loading = document.getElementById('loading');
+const searchInput = document.getElementById('searchInput');
 
-// Intersection Observer for Scroll Fade + Float Animation
+// Observer for fade animation
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, {
-  threshold: 0.2
-});
+}, { threshold: 0.2 });
 
-// Infinite scroll setup
-let postsPerPage = 12;
-let currentPage = 0;
-
-const blogGrid = document.getElementById('blog-grid');
-const loading = document.getElementById('loading');
-const searchInput = document.getElementById('searchInput');
-
-// Load posts in chunks
-function loadPosts() {
+// Load posts chunk
+function loadPostsChunk() {
   const start = currentPage * postsPerPage;
   const end = start + postsPerPage;
-  const chunk = posts.slice(start, end);
+  const chunk = filteredPosts.slice(start, end);
 
   chunk.forEach(post => {
-    const postCard = createPostCard(post);
-    blogGrid.appendChild(postCard);
-    observer.observe(postCard); // Observe each post for animation
+    const card = createPostCard(post);
+    blogGrid.appendChild(card);
+    observer.observe(card);
   });
 
   currentPage++;
 }
 
-// Create a blog post card dynamically
+// Create post card
 function createPostCard(post) {
-  const postURL = `./posts/${post.year}/${post.slug}.html`;
-
-  const postCard = document.createElement('div');
-  postCard.className = 'blog-card magnetic fade-slide-up'; // Add Vision Pro classes
-  postCard.innerHTML = `
-    <a href="${postURL}" class="blog-link">
+  const postUrl = `/posts/${post.year}/${post.slug}.html`;
+  const card = document.createElement('div');
+  card.className = 'blog-card magnetic fade-slide-up';
+  card.innerHTML = `
+    <a href="${postUrl}" class="blog-link" data-link>
       <div class="blog-card-image">
-        <img src="${post.image}" alt="${post.title}">
+        <img src="${post.image}" alt="${post.title}" />
       </div>
       <div class="blog-card-content">
         <h2>${post.title}</h2>
-        <p class="post-date">${post.date}</p>
+        <p class="post-date">${new Date(post.date).toDateString()}</p>
       </div>
     </a>
   `;
-
-  return postCard;
+  return card;
 }
 
-// Detect when user scrolls near bottom to load more posts
+// Scroll to load more
 window.addEventListener('scroll', () => {
   if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 300)) {
-    loading.style.display = 'block';
-    setTimeout(() => {
-      loadPosts();
-      loading.style.display = 'none';
-    }, 1000);
+    if (currentPage * postsPerPage < filteredPosts.length) {
+      loading.style.display = 'block';
+      setTimeout(() => {
+        loadPostsChunk();
+        loading.style.display = 'none';
+      }, 500);
+    }
   }
 });
 
-// Filter posts dynamically based on search input
+// Filter search
 searchInput.addEventListener('input', function () {
   const query = this.value.toLowerCase();
-  blogGrid.innerHTML = ''; // Clear the grid
-  currentPage = 0; // Reset paging
+  filteredPosts = posts.filter(post =>
+    post.title.toLowerCase().includes(query) ||
+    post.excerpt?.toLowerCase().includes(query)
+  );
+  blogGrid.innerHTML = '';
+  currentPage = 0;
+  loadPostsChunk();
+});
 
-  const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(query));
-  filteredPosts.forEach(post => {
-    const postCard = createPostCard(post);
-    blogGrid.appendChild(postCard);
-    observer.observe(postCard); // Observe filtered posts too
+// Load blogRollData.json
+fetch('/data/blogRollData.json')
+  .then(res => {
+    if (!res.ok) throw new Error('Failed to load blogRollData');
+    return res.json();
+  })
+  .then(data => {
+    posts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    filteredPosts = [...posts];
+    loadPostsChunk();
+  })
+  .catch(err => {
+    console.error('Failed to fetch posts:', err);
+    blogGrid.innerHTML = `<p style="text-align:center;">Error loading blog posts.</p>`;
   });
-});
-
-// Back to Top Button setup
-const backToTopButton = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTopButton.style.display = "block";
-  } else {
-    backToTopButton.style.display = "none";
-  }
-});
-
-// Smooth scroll to top on Back to Top button click
-backToTopButton.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
-// Initial load of posts
-loadPosts();
-
-/* ----------------------- */
-/* Custom Mouse Cursor Code */
-/* ----------------------- */
-
-// Custom cursor setup
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-
-document.addEventListener('mousemove', e => {
-  cursor.style.top = e.clientY + 'px';
-  cursor.style.left = e.clientX + 'px';
-});
-
-// Smooth follower animation
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function smoothFollow() {
-  posX += (mouseX - posX) * 0.15;  // Smooth closer follow
-  posY += (mouseY - posY) * 0.15;
-  follower.style.transform = `translate(${posX}px, ${posY}px) translate(-50%, -50%)`;
-  requestAnimationFrame(smoothFollow);
-}
-
-smoothFollow();
-
-// Cursor interaction with links and buttons (hover color change)
-const hoverTargets = document.querySelectorAll('a, button');
-
-hoverTargets.forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    follower.style.backgroundColor = 'rgba(255, 105, 180, 0.2)'; // Light pink fill
-    follower.style.borderColor = '#ff69b4'; // Pink border
-    follower.style.transform = 'scale(1.5) translate(-50%, -50%)';
-  });
-
-  el.addEventListener('mouseleave', () => {
-    follower.style.backgroundColor = 'transparent'; // Transparent again
-    follower.style.borderColor = '#000'; // Black border again
-    follower.style.transform = 'scale(1) translate(-50%, -50%)';
-  });
-});
-
-// Cursor color change based on section background
-const sections = document.querySelectorAll('[data-cursor-color]');
-
-sections.forEach(section => {
-  section.addEventListener('mouseenter', () => {
-    const color = section.getAttribute('data-cursor-color');
-    if (color === 'white') {
-      follower.style.borderColor = '#ffffff';
-      follower.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-    } else if (color === 'pink') {
-      follower.style.borderColor = '#ff69b4';
-      follower.style.backgroundColor = 'rgba(255, 105, 180, 0.1)';
-    } else if (color === 'yellow') {
-      follower.style.borderColor = '#FFD700';
-      follower.style.backgroundColor = 'rgba(255, 215, 0, 0.1)';
-    } else {
-      // Default fallback
-      follower.style.borderColor = '#000000';
-      follower.style.backgroundColor = 'transparent';
-    }
-  });
-});
-
-// Magnetic Hover Effect
-const magneticElements = document.querySelectorAll('.magnetic');
-
-magneticElements.forEach(el => {
-  el.addEventListener('mousemove', (e) => {
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    
-    el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-  });
-
-  el.addEventListener('mouseleave', () => {
-    el.style.transform = `translate(0px, 0px)`;
-  });
-});
-
-// Ripple Effect on Blog Card Click
-document.addEventListener('click', function(e) {
-  const target = e.target.closest('.blog-link');
-  if (!target) return;
-
-  const ripple = document.createElement('span');
-  ripple.className = 'ripple';
-  
-  const rect = target.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  ripple.style.width = ripple.style.height = size + 'px';
-  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-  
-  target.appendChild(ripple);
-
-  setTimeout(() => {
-    ripple.remove();
-  }, 600);
-});
